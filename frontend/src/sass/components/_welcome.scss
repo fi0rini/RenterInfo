@@ -1,0 +1,31 @@
+.welcome {
+  width: 80%;
+  margin:0 auto;
+
+  .jumbotron {
+    border-radius: 4px;
+    padding: 30px 20px;
+    background-color: inherit;;
+  }
+
+  .btn-more {
+    margin-right: 10px;
+  }
+  .btn-signup {
+    margin-right: 10px;
+  }
+  .btn-states {
+
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome {
+    width: 100%;
+
+    .fa-bar-chart {
+      font-size: 5em;
+    }
+  }
+
+}

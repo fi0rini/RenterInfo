@@ -1,0 +1,16 @@
+.login {
+  width:50%;
+  margin:0 auto;
+
+  .login-buttons {
+    text-align: center;
+
+    .google-social {
+      width:200px;
+      margin-bottom:10px;
+    }
+    .facebook-social {
+      width:200px;
+    }
+  }
+}
