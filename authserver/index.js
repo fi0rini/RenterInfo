@@ -7,12 +7,13 @@ const path = require('path')
   , express = require('express')
   , authserver = express()
   , appSession = require('../appSession')
+  , googleplus = require('../env').googleplus
   , port = 4444;
 
 // GOOGLE AUTHENTICATION SETTINGS
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const GOOGLE_CONSUMER_KEY = '762097910342-nb0dcnmcocioqeunk4otp8jt5fphhvfi.apps.googleusercontent.com';
-const GOOGLE_CONSUMER_SECRET = '_KmgdrzfevNkENxZUjf5mJt_';
+const GOOGLE_CONSUMER_KEY = googleplus.key;
+const GOOGLE_CONSUMER_SECRET = googleplus.secret;
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj,done) => done(null, obj));

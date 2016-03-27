@@ -1,5 +1,5 @@
 // local deps
-const KEY = require('./env').trulia.key;
+const KEY = require('../env').trulia.key;
 
 // routers and middleware
 const express = require('express');
