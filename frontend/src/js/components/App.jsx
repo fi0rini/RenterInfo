@@ -1,9 +1,9 @@
-const React = require('react')
-  , { Link } = require('react-router')
-  , { Nav, Navbar, NavItem, NavDropdown, MenuItem } = require('react-bootstrap')
+const React = require('react');
+const { Link } = require('react-router');
+const { Nav, Navbar, NavItem, NavDropdown, MenuItem } = require('react-bootstrap');
 
-  , Location = require('./Location')
-  , cookies = require('../utils/cookies');
+const Location = require('./Location');
+const cookies = require('../utils/cookies');
 
 class App extends React.Component {
   constructor(props) {
