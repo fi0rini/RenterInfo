@@ -12,20 +12,15 @@ Once you have key(s)/secret(s), fill them in in the appropriate locations in the
 
 
 ## Getting Started
+make sure you have gulp installed
+```
+$ npm install -g gulp-cli    # if error, try sudo
+```
 After you have the repo
 ```
 $ npm install
-$ cd frontend
-$ gulp
 
-#open a new tab
-
-$ node index.js
-
-#open a new tab
-
-$ cd ../apiserver
-$ node index.js
+$ node .
 
 ```
 
