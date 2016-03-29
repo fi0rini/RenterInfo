@@ -1,0 +1,3 @@
+frontend/src/js/utils/cookies.js
+frontend/src/js/utils/jquery.js
+frontend/build/js/**/*.js

@@ -1,12 +1,20 @@
 const React = require('react');
 const proxy = require('../utils/proxy');
 
+const { PropTypes } = React;
+
 class Fetch extends React.Component {
+  static propTypes = {
+    url: PropTypes.string
+  };
+
   constructor(props) {
+    var _resolve;
+    var _reject;
+
     super(props);
 
-    var _resolve, _reject;
-    this.__promise = new Promise( (resolve, reject) => { _resolve = resolve; _reject = reject; });
+    this.__promise = new Promise((resolve, reject) => { _resolve = resolve; _reject = reject; });
 
     this.state = {};
     this.state.loading = true;
@@ -26,37 +34,35 @@ class Fetch extends React.Component {
 
   _switch(r, er) {
     return (a) => {
-      this.setState({error: er});
+      this.setState({ error: er });
       this.__response = a;
       r(a);
-    }
+    };
   }
 
   _fetchData() {
-    if(this.__opts.url)
-      proxy(this.__opts);
-    else
-      console.warn('no url provided for the request');
+    if (this.__opts.url) proxy(this.__opts);
+    else console.warn('no url provided for the request');
 
-    this.__promise.then(this._renderResponse.bind(this), this._renderError.bind(this)).then(() => this.setState({loading: false}));
+    this.__promise.then(this._renderResponse.bind(this), this._renderError.bind(this)).then(() => this.setState({ loading: false }));
   }
 
   /**
    * This needs to be extended
    */
-  _renderResponse(r) {
+  _renderResponse() {
     return null;
   }
 
   /**
    * This needs to be extended for error rendering
    */
-  _renderError(e) {
+  _renderError() {
     return null;
   }
 
   render() {
-    const { state: {loading, error} } = this;
+    const { state: { loading, error } } = this;
 
     return <div> {
       loading ?

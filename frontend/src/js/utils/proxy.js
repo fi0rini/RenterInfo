@@ -16,7 +16,7 @@ const defaults = {
   error: (err) => console.error(err.message)
 };
 
-function proxy (options) {
+var proxy = function proxy(options) {
   options.url = defaults.baseUrl + url.parse(options.url).path;
   options.data = options.data ? options.data : {};
   options.error = options.error ? options.error : defaults.error;

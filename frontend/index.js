@@ -16,10 +16,7 @@ frontend.use(session({
   saveUninitialized: true
 }));
 
-frontend.use((req,res,next) => {
-  // console.log(req.headers)
-  // console.log('URL:', req.url)
-  // console.log('SID:', req.sessionID);
+frontend.use((req, res, next) => {
   next();
 });
 

@@ -12,13 +12,13 @@ class Welcome extends React.Component {
             A place to find property data about your community
           </p>
           <p>
-            <LinkContainer to={{ pathname: 'more'}}>
+            <LinkContainer to={{ pathname: 'more' }}>
               <Button className="btn-more" bsStyle="info">Learn more</Button>
             </LinkContainer>
-            <LinkContainer to={{ pathname: 'signup'}}>
+            <LinkContainer to={{ pathname: 'signup' }}>
               <Button className="btn-signup" bsStyle="primary">Sign Up</Button>
             </LinkContainer>
-            <LinkContainer to={{ pathname: 'states'}}>
+            <LinkContainer to={{ pathname: 'states' }}>
               <Button className="btn-signup" bsStyle="warning">States</Button>
             </LinkContainer>
           </p>

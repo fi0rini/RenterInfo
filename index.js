@@ -1,11 +1,18 @@
-(function (cproc) {
-  const frontend = cproc.spawn('gulp', { cwd: './frontend' });
-  const apiserver = cproc.fork('index.js', { cwd: './apiserver' });
+const exec = require('child_process').exec;
+const execFile = require('child_process').execFile;
 
-  frontend.stdout.on('data', (data) => process.stdout.write(`${data}`));
-  frontend.stderr.on('data', (data) => process.stderr.write(`frontend-err: ${data}`));
-  frontend.on('close', (code) => process.stdout.write(`child process *frontend* exited with code ${code}`));
+const apiProc = execFile('node', ['.'], { cwd: './apiserver' });
 
-  apiserver.on('close', (code) => process.stdout.write(`*apiserver* fork exited with code ${code}`));
+apiProc.stdout.on('data', (data) => process.stdout.write(`${data}`));
+apiProc.stderr.on('data', (data) => process.stderr.write(`${data}`));
 
-}(require('child_process')));
+const feProc = execFile('node', ['.'], { cwd: './frontend' });
+
+feProc.stdout.on('data', (data) => process.stdout.write(`${data}`));
+feProc.stderr.on('data', (data) => process.stderr.write(`${data}`));
+
+const gulp = exec('gulp', { cwd: './frontend' });
+
+gulp.stdout.on('data', (data) => process.stdout.write(`${data}`));
+gulp.stderr.on('data', (data) => process.stderr.write(`${data}`));
+
