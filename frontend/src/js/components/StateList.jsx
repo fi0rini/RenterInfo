@@ -3,13 +3,15 @@ const Fetch = require('./fetch.jsx');
 
 const { Grid, Row, Col, Label } = require('react-bootstrap');
 const { Link } = require('react-router');
+const { proxy: { api } } = require('../config');
 // const d3 = require('d3');
 
 class StateList extends Fetch {
   constructor(props) {
     super(props);
-    this.__opts.url = 'http://localhost:5000/states';
+    this.__opts.url = `${api}/info`;
   }
+
   _renderResponse(xmlResponse) {
     const states = xmlResponse.getElementsByTagName('state');
     const map = [].map.call(states, (stateXML, i) => {

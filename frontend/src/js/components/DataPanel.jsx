@@ -4,6 +4,7 @@ const Fetch = require('./fetch');
 
 const { PropTypes } = React;
 const { StateGraph } = require('../graphs');
+const { proxy: { api } } = require('../config');
 
 class DataPanel extends Fetch {
   static propTypes = {
@@ -13,7 +14,7 @@ class DataPanel extends Fetch {
   constructor(props) {
     super(props);
     this.__opts.url =
-      `http://localhost:5000/stats?function=getStateStats&state=${this.props.params.statecode}&start-date=2015-12-01&end-date=2016-01-01`;
+      `${api}/stats?function=getStateStats&state=${this.props.params.statecode}&start-date=2015-12-01&end-date=2016-01-01`;
   }
 
   _renderResponse(xmlResponse) {

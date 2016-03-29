@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const browserify = require('browserify');
+const envify = require('envify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const del = require('del');
@@ -75,7 +76,7 @@ gulp.task('browserify', function browserifyTask() {
     entries: 'entry.js',
     extensions: ['.js', '.jsx'],
     basedir: './src/js',
-    transform: [ babelify ]
+    transform: [ babelify, envify ]
   })
     .bundle()
     .on('error', function error(err) {
