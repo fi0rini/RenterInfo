@@ -56,44 +56,52 @@ gulp.task('copy:css', function copyCSS() {
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });
+
+gulp.task('copy:images', function copyImages() {
+  var dest = './build/images';
+
+  gulp.src('./src/images/**')
+    .pipe(gulp.dest(dest))
+    .pipe(browserSync.stream());
+});
 /**
  * End copy section
  **/
 
 // transpile js
 gulp.task('browserify', function browserifyTask() {
-  return browserify({
+  browserify({
     debug: true,
     entries: 'entry.js',
     extensions: ['.js', '.jsx'],
     basedir: './src/js',
-    transform: [babelify]
+    transform: [ babelify ]
   })
-  .bundle()
-  .on('error', function error(err) {
-    console.error(err.filename);
-    console.error(err.loc);
-    console.error(err.codeFrame);
-    this.emit('end');
-  })
-  .pipe(source('bundle.js'))
-  .pipe(gulp.dest('./build/js'))
-  .pipe(browserSync.stream());
+    .bundle()
+    .on('error', function error(err) {
+      console.error(err.filename);
+      console.error(err.loc);
+      console.error(err.codeFrame);
+      this.emit('end');
+    })
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./build/js'))
+    .pipe(browserSync.stream());
 });
 
 // compile sass files
 gulp.task('sass', function sassTask() {
-  return gulp.src('./src/sass/main.scss')
-  .on('error', function error(err) {
-    console.error(err);
-    this.emit('end');
-  })
-  .pipe(sass())
-  .pipe(gulp.dest('./build/css'))
-  .pipe(browserSync.stream());
+  gulp.src('./src/sass/main.scss')
+    .on('error', function error(err) {
+      console.error(err);
+      this.emit('end');
+    })
+    .pipe(sass())
+    .pipe(gulp.dest('./build/css'))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('build', ['copy:index', 'copy:css', 'copy:fonts', 'browserify', 'sass']);
+gulp.task('build', ['copy:index', 'copy:css', 'copy:fonts', 'copy:images', 'browserify', 'sass']);
 
 gulp.task('watch', ['build'], function watch() {
   gulp.watch(['./src/index.html'], ['copy:index']);

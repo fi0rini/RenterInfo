@@ -1,29 +1,43 @@
 const React = require('react');
-const { Jumbotron, Button } = require('react-bootstrap');
-const { LinkContainer } = require('react-router-bootstrap');
+const { Grid, Row, Col, Jumbotron, Navbar, Nav } = require('react-bootstrap');
+const { Link } = require('react-router');
 
 class Welcome extends React.Component {
   render() {
     return (
-      <div className="welcome well">
+      <Grid className="welcome well">
         <Jumbotron>
-          <h1>RenterInfo <i className="fa fa-bar-chart fa-3x pull-right"></i> </h1>
-          <p>
-            A place to find property data about your community
-          </p>
-          <p>
-            <LinkContainer to={{ pathname: 'more' }}>
-              <Button className="btn-more" bsStyle="info">Learn more</Button>
-            </LinkContainer>
-            <LinkContainer to={{ pathname: 'signup' }}>
-              <Button className="btn-signup" bsStyle="primary">Sign Up</Button>
-            </LinkContainer>
-            <LinkContainer to={{ pathname: 'states' }}>
-              <Button className="btn-signup" bsStyle="warning">States</Button>
-            </LinkContainer>
-          </p>
+          <Row>
+            <Col xs={12} sm={6} md={6} lg={6}>
+              <h1>RenterInfo <i className="fa fa-bar-chart"></i></h1>
+              <p>
+                A place to find property data about your community
+              </p>
+            </Col>
+            <Col xs={12} sm={6} md={6} lg={6}>
+              <i className="fa fa-bar-chart fa-5x"></i>
+            </Col>
+          </Row>
+          <Row className="btn-row">
+            <Navbar justified>
+              <Nav bsStyle="pills">
+                <Navbar.Text eventKey={1}>
+                  <Link to="/more" className="btn-more" bsStyle="danger">Learn more</Link>
+                </Navbar.Text>
+                <Navbar.Text eventKey={2}>
+                  <Link to="/signup" className="btn-signup" bsStyle="success">Sign Up</Link>
+                </Navbar.Text>
+                <Navbar.Text eventKey={3}>
+                  <Link to="/states" className="btn-states" bsStyle="primary">States</Link>
+                </Navbar.Text>
+                <Navbar.Text eventKey={4}>
+                  <Link to="/login" className="btn-login" bsStyle="warning">Log In</Link>
+                </Navbar.Text>
+              </Nav>
+            </Navbar>
+          </Row>
         </Jumbotron>
-      </div>
+      </Grid>
     );
   }
 }

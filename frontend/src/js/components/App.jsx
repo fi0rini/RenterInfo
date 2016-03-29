@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="application">
-        <Navbar>
+        <Navbar inverse className="main-nav">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">RenterInfo</Link>
@@ -36,13 +36,12 @@ class App extends React.Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav pullRight>
+            <Nav bsStyle="pills" pullRight>
               <NavItem eventKey={3.1}>
                 <Location>{this._location}</Location>
               </NavItem>
               <NavItem eventKey={2} href="/login">Log In</NavItem>
-              <NavDropdown eventKey={3} title="Username" id="basic-nav-dropdown">
-                <MenuItem divider />
+              <NavDropdown eventKey={3} title="User" id="user-nav-dropdown">
                 <MenuItem eventKey={3.2}>Action</MenuItem>
                 <MenuItem eventKey={3.3}>Another action</MenuItem>
                 <MenuItem eventKey={3.4}>Something else here</MenuItem>

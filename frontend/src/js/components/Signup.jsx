@@ -1,14 +1,14 @@
 const React = require('react');
-const { Jumbotron } = require('react-bootstrap');
+const { Panel } = require('react-bootstrap');
 
 class Signup extends React.Component {
   render() {
+    const title = <h1> Signup </h1>;
+
     return (
-      <div className="welcome well">
-        <Jumbotron>
-          <h1 style={{ textAlign: 'center' }}> Signup </h1>
-        </Jumbotron>
-      </div>
+      <Panel className="welcome" header={title}>
+        <div> signup </div>
+      </Panel>
     );
   }
 }

@@ -1,0 +1,40 @@
+#info-popover {
+  top: 116px !important;
+  left: 148px !important;
+}
+.datapanel {
+  .panel-title {
+    .state-title {
+      display: inline-block;
+      margin-top:0;
+    }
+    .toolbar {
+      display:inline-block;
+      padding-top:12px;
+      margin-left:20px;
+      margin-right: auto;
+    }
+  }
+
+  .panel-footer {
+    text-align: center;
+    background-color: #FFF;
+
+    .trulia-logo {
+      img {
+        width:40px;
+      }
+    }
+    .trulia-logo::before {
+      position:relative;
+      top:2px;
+      content: 'Powered by: ';
+      font-size: 8pt;
+    }
+  }
+
+  button.info-btn {
+    width: 20px;
+    border-radius:50px;
+  }
+}

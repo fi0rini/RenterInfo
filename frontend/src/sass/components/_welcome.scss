@@ -4,18 +4,40 @@
 
   .jumbotron {
     border-radius: 4px;
-    padding: 30px 20px;
-    background-color: inherit;;
+    padding: 20px 20px;
+    background-color: inherit;
+    .btn-row {
+      text-align: center;
+      margin-top:20px;
+    }
+    i.fa-bar-chart.fa-5x {
+      font-size: 17em;
+      position: relative;
+      top: 25px;
+      float:right;
+    }
+    h1 {
+      i.fa-bar-chart {
+        display: none;
+        font-size: 3em;
+        float:left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      i.fa-bar-chart {
+        display:none;
+      }
+      h1 {
+        i.fa-bar-chart {
+          display: block;
+        }
+      }
+    }
   }
-
-  .btn-more {
-    margin-right: 10px;
-  }
-  .btn-signup {
-    margin-right: 10px;
-  }
-  .btn-states {
-
+  .btn {
+    width:100px;
   }
 }
 
