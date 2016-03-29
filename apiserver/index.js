@@ -1,11 +1,12 @@
 // local deps
-const KEY = require('../env').trulia.key
 
 // routers and middleware
-  , express = require('express')
-  , apiserver = express()
-  , cors = require('cors')
-  , trulia = require('./routers/trulia');
+const express = require('express');
+const cors = require('cors');
+const trulia = require('./routers/trulia');
+const KEY = require('../env').trulia.key;
+
+const apiserver = express();
 
 // allow CORS requests
 apiserver.use(cors());

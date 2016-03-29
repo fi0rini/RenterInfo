@@ -1,17 +1,14 @@
 const React = require('react');
 const Fetch = require('./fetch.jsx');
 
-const { Grid, Row, Col, Button, Label } = require('react-bootstrap');
-const { LinkContainer } = require('react-router-bootstrap');
+const { Grid, Row, Col, Label } = require('react-bootstrap');
 const { Link } = require('react-router');
-const d3 = require('d3');
-
-const stateMap = {};
+// const d3 = require('d3');
 
 class StateList extends Fetch {
   constructor(props) {
     super(props);
-    this.__opts.url = "http://localhost:5000/states";
+    this.__opts.url = 'http://localhost:5000/states';
   }
   _renderResponse(xmlResponse) {
     const states = xmlResponse.getElementsByTagName('state');
@@ -38,7 +35,7 @@ class StateList extends Fetch {
         <Row>
           { map }
         </Row>
-      </Grid>
+      </Grid>;
   }
 }
 

@@ -1,19 +1,19 @@
 // external deps
-const url = require('url')
-  , qs = require('querystring')
-  , assign = require('object-assign-deep')
-  , route = require('express').Router()
+const url = require('url');
+const qs = require('querystring');
+const Router = require('express').Router();
 
   // local deps
-  , Trulia = require('../lib/Trulia');
+const Trulia = require('../lib/Trulia');
 
-// route handler for google api requests
-module.exports = function (key) {
+// Router handler for google api requests
+module.exports = function rout(key) {
   const trulia = new Trulia(key);
 
   // get the list of states that we can query
-  route.get('/states', function (req, res, next) {
+  Router.get('/states', function states(req, res) {
     const query = {};
+
     query.library = 'LocationInfo';
     query.function = 'getStates';
 
@@ -22,7 +22,7 @@ module.exports = function (key) {
       .pipe(res);
   });
 
-  route.get('/stats', function (req, res, next) {
+  Router.get('/stats', function stats(req, res) {
     const query = qs.parse(url.parse(req.url).query);
 
     query.library = 'TruliaStats';
@@ -32,8 +32,9 @@ module.exports = function (key) {
       .pipe(res);
   });
 
-  route.get('/info', function (req, res, next) {
+  Router.get('/info', function info(req, res) {
     const query = qs.parse(url.parse(req.url).query);
+
     query.library = 'LocationInfo';
 
     trulia
@@ -41,5 +42,5 @@ module.exports = function (key) {
       .pipe(res);
   });
 
-  return route;
+  return Router;
 };

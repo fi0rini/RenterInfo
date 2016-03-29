@@ -6,7 +6,7 @@ class More extends React.Component {
     return (
       <div className="welcome well">
         <Jumbotron>
-          <h1 style={{textAlign: 'center'}}> More </h1>
+          <h1 style={{ textAlign: 'center' }}> More </h1>
         </Jumbotron>
       </div>
     );

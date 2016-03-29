@@ -2,7 +2,13 @@ const React = require('react');
 const { Grid, Row, Col } = require('react-bootstrap');
 const DataPanel = require('./DataPanel');
 
+const { PropTypes } = React;
+
 class State extends React.Component {
+  static propTypes = {
+    params: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {};
