@@ -3,6 +3,7 @@ const { Grid, Panel, OverlayTrigger, Popover, ButtonToolbar, ButtonGroup, Button
 const Fetch = require('./fetch');
 
 const { PropTypes } = React;
+const { StateGraph } = require('../graphs');
 
 class DataPanel extends Fetch {
   static propTypes = {
@@ -16,7 +17,6 @@ class DataPanel extends Fetch {
   }
 
   _renderResponse(xmlResponse) {
-    console.log(xmlResponse);
     const stateName = xmlResponse.getElementsByTagName('stateName')[0].innerHTML;
     const stateURL = xmlResponse.getElementsByTagName('stateURL')[0].innerHTML;
     const heatMapURL = xmlResponse.getElementsByTagName('heatMapURL')[0].innerHTML;
@@ -44,7 +44,9 @@ class DataPanel extends Fetch {
             </OverlayTrigger>
 
             <ButtonGroup>
-              <Button bsSize="xsmall"> Cities </Button>
+              <Button bsSize="xsmall">
+                Cities
+              </Button>
               <Button bsSize="xsmall"> Counties </Button>
               <Button bsSize="xsmall"> Zip Codes </Button>
             </ButtonGroup>
@@ -60,7 +62,7 @@ class DataPanel extends Fetch {
     this.__response =
       <Panel className="datapanel" header={header} footer={footer}>
         <Grid >
-          Make the data panel here!
+          { new StateGraph(xmlResponse) }
         </Grid>
       </Panel>;
 

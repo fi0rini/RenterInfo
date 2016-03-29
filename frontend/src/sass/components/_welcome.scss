@@ -5,6 +5,8 @@
   .jumbotron {
     border-radius: 4px;
     padding: 20px 20px;
+    padding-bottom:0;
+    margin-bottom:0;
     background-color: inherit;
     .btn-row {
       text-align: center;
@@ -19,10 +21,10 @@
     h1 {
       i.fa-bar-chart {
         display: none;
-        font-size: 3em;
+        font-size: 2.2em;
         float:left;
         margin-right: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
       }
     }
     @media screen and (max-width: 768px) {
