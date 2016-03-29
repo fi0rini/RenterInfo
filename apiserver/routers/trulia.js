@@ -13,8 +13,8 @@ const Trulia = require('../proxy/Trulia');
 // getStateStats
 // getZipCodeStats
 const STATS = {
-  fn: function fn(str) { return assign(this.lib, { 'function': str }); },
-  get lib() { return { library: 'TruliaStats' }; },
+  fn: function fn(str) { return assign(this.LIBRARY, { 'function': str }); },
+  get LIBRARY() { return { library: 'TruliaStats' }; },
   get CITY() { return this.fn('getCityStats'); },
   get COUNTY() { return this.fn('getCountyStats'); },
   get NEIGHBORHOOD() { return this.fn('getNeighborhoodStats'); },
@@ -29,8 +29,8 @@ const STATS = {
 // getStates
 // getZipCodesInState
 const INFO = {
-  fn: function fn(str) { return assign(this.lib, { 'function': str }); },
-  get lib() { return { library: 'LocationInfo' }; },
+  fn: function fn(str) { return assign(this.LIBRARY, { 'function': str }); },
+  get LIBRARY() { return { library: 'LocationInfo' }; },
   get CITIES() { return this.fn('getCitiesInState'); },
   get COUNTIES() { return this.fn('getCountiesInState'); },
   get NEIGHBORHOODS() { return this.fn('getNeighborhoodsInCity'); },
