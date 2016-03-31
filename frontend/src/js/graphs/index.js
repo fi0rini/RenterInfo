@@ -1,3 +1,3 @@
-const StateGraph = require('./StateGraph');
+const TrafficGraph = require('./TrafficGraph');
 
-module.exports = { StateGraph };
+module.exports = { TrafficGraph };

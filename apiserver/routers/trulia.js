@@ -75,6 +75,5 @@ module.exports = function router(key) {
   Router.get(`/neighborhood/:${NEIGHBORHOOD_ID}/:${START_DATE}/:${END_DATE}`, proxy(STATS.NEIGHBORHOOD));
   Router.get(`/zipcode/:${ZIPCODE}/:${START_DATE}/:${END_DATE}`, proxy(STATS.ZIPCODE));
 
-
   return Router;
 };

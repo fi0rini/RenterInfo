@@ -1,27 +1,54 @@
 const React = require('react');
 const { Grid, Panel, OverlayTrigger, Popover, ButtonToolbar, ButtonGroup, Button } = require('react-bootstrap');
-const Fetch = require('./fetch');
-
-const { PropTypes } = React;
-const { StateGraph } = require('../graphs');
+const { proxy, timer } = require('../utils');
 const { proxy: { api } } = require('../config');
+const { PropTypes } = React;
 
-class DataPanel extends Fetch {
+const { TrafficGraph } = require('../graphs');
+
+class DataPanel extends React.Component {
   static propTypes = {
-    statecode: PropTypes.string
+    params: PropTypes.object
   };
 
   constructor(props) {
     super(props);
-    this.__opts.url =
-      `${api}/stats?function=getStateStats&state=${this.props.params.statecode}&start-date=2015-12-01&end-date=2016-01-01`;
+    this.stateGraph = null;
+    this.state = {};
+    this.__startDate = '2015-01-01';
+    this.__endDate = '2016-01-01';
+    this.__opts = {};
+    this.__opts.url = `${api}/state/${this.props.params.statecode}/${this.__startDate}/${this.__endDate}`;
+    this.__promise = new Promise((r, _r) => { this.__opts.success = r; this.__opts.error = _r; });
   }
 
-  _renderResponse(xmlResponse) {
-    const stateName = xmlResponse.getElementsByTagName('stateName')[0].innerHTML;
-    const stateURL = xmlResponse.getElementsByTagName('stateURL')[0].innerHTML;
-    const heatMapURL = xmlResponse.getElementsByTagName('heatMapURL')[0].innerHTML;
+  componentDidMount() {
+    proxy(this.__opts)
+      .then((xml) => {
+        this.setComponentProperties(xml);
+        // query the condition TrafficGraph.exists() searchs for 'svg.traffic-graph'
+        // in the DOM before it can render the visualization
+        // for 200 ms and then render the graph once it exists
+        // this is because we need React to render the DOM before we can have access to it
+        timer(50, 200, () => TrafficGraph.exists())
+          .then(() => {
+            /* TODO: new TrafficStat(height, width) ???? */
+            this.stateGraph = new TrafficGraph();
+            this.stateGraph.init(xml.documentElement.getElementsByTagName('trafficStat'));
+          });
+      });
+  }
 
+  setComponentProperties(xml) {
+    this.setState({
+      stateName: xml.getElementsByTagName('stateName')[0].innerHTML,
+      stateURL: xml.getElementsByTagName('stateURL')[0].innerHTML,
+      heatMapURL: xml.getElementsByTagName('heatMapURL')[0].innerHTML
+    });
+  }
+
+  render() {
+    const { stateName, stateURL, heatMapURL } = this.state;
     const { statecode } = this.props.params;
 
     const popOver =
@@ -60,15 +87,20 @@ class DataPanel extends Fetch {
         <img src="/images/trulia.jpg" />
       </div>;
 
-    this.__response =
+    const panel =
       <Panel className="datapanel" header={header} footer={footer}>
         <Grid >
-          { new StateGraph(xmlResponse) }
+          <svg height="500" width="100%" className="traffic-graph">
+          </svg>
+          <div className="slider">
+            {`${this.__startDate} - ${this.__endDate}`}
+          </div>
         </Grid>
       </Panel>;
 
-    return this.__response;
+    return panel;
   }
+
 }
 
 module.exports = DataPanel;

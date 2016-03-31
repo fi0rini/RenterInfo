@@ -9,7 +9,7 @@ const { proxy: { api } } = require('../config');
 class StateList extends Fetch {
   constructor(props) {
     super(props);
-    this.__opts.url = `${api}/info`;
+    this.__opts.url = `${api}/state`;
   }
 
   _renderResponse(xmlResponse) {
