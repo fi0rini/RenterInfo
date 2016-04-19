@@ -7,9 +7,33 @@
       <link href="/css/bootstrap.min.css" rel="stylesheet" />
       <link href="/css/font-awesome.min.css" rel="stylesheet" />
       <link href="/css/main.css" rel="stylesheet" />
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
+      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   </head>
   <body>
-      <div id="app"></div>
-      <script src="/js/bundle.js"></script>
+    <div id="app">
+      <div class="container-fluid">
+        <div class="row">
+          <h1> RenterInfo </h1>
+        </div>
+        <div class="row controlbar">
+            <select id="state-selector" class="form-control"> </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="traffic-dash" style="height:500px;">
+              <svg id="traffic-graph"></svg>
+              <div id="date-range"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/js/bundle.js"></script>
   </body>
 </html>

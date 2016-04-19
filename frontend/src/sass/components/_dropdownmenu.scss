@@ -1,0 +1,28 @@
+h1.state-title {
+  .dropdown {
+    top: -2px;
+  }
+}
+div.dropdown.btn-group {
+  margin-left: 15px;
+}
+div.dropdown.btn-group > button {
+  height: 22px;
+  line-height: 0.428571;
+}
+ul.dropdown-menu {
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-width: auto;
+
+  li {
+    width: 66px;
+    a {
+      text-align: center;
+      padding-top:3px;
+      padding-bottom: 3px;
+      padding-left: 0;
+    }
+  }
+}

@@ -164,7 +164,7 @@
     "react/jsx-uses-vars": 2,
     "react/no-danger": 2,
     "react/no-deprecated": 2,
-    "react/no-did-mount-set-state": 2,
+    "react/no-did-mount-set-state": 0,
     "react/no-did-update-set-state": 2,
     "react/no-multi-comp": 2,
     "react/no-unknown-property": 2,
@@ -177,7 +177,9 @@
       "react",
       "eslint-plugin-react"
     ],
-    "global": {
+    "globals": {
+      "$": true,
+      "d3": true,
       "React": true
     }
 }

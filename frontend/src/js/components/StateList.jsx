@@ -1,43 +1,53 @@
 const React = require('react');
-const Fetch = require('./fetch.jsx');
-
+const StateMap = require('../stores/StateMap');
 const { Grid, Row, Col, Label } = require('react-bootstrap');
 const { Link } = require('react-router');
-const { proxy: { api } } = require('../config');
-// const d3 = require('d3');
 
-class StateList extends Fetch {
+class StateList extends React.Component {
   constructor(props) {
     super(props);
-    this.__opts.url = `${api}/state`;
+    this.state = {};
+  }
+  componentDidMount() {
+    if (StateMap.getAllKeys().length) this.setTheState();
+    else {
+      StateMap.once('init', (r) => this.setTheState(r));
+      StateMap.once('error', (e) => this.setTheError(e));
+    }
   }
 
-  _renderResponse(xmlResponse) {
-    const states = xmlResponse.getElementsByTagName('state');
-    const map = [].map.call(states, (stateXML, i) => {
-      const stateCode = stateXML.getElementsByTagName('stateCode')[0].innerHTML;
-      const name = stateXML.getElementsByTagName('name')[0].innerHTML;
+  setTheState() {
+    const states = StateMap.getAllKeys();
 
-      return (
-        <Col key={i} xs={12} sm={6} md={4} lg={3} className="state">
-            <Link to={`/state/${stateCode}`} bsSize="large" block>
-              <div className="name">
-                {name}
-              </div>
-              <Label bsStyle="primary" className="code">
-                {stateCode}
-              </Label>
-            </Link>
-        </Col>
-      );
+    this.setState({
+      states: states.map((s) => ({ name: StateMap.get(s).name, stateCode: StateMap.get(s).stateCode }))
     });
+  }
 
-    this.__response =
+  setTheError(e) {
+    this.setState({ error: e });
+  }
+
+  render() {
+    return (
+      this.state.states ?
       <Grid>
         <Row>
-          { map }
+        {this.state.states.map((state, key) =>
+          <Col key={1} xs={12} sm={6} md={4} lg={3} key={key}>
+            <Link to={`/state/${state.stateCode}`} className="state" bsSize="large" block>
+              <div className="name">
+                {state.name}
+              </div>
+              <Label bsStyle="primary" className="code">
+                {state.stateCode}
+              </Label>
+            </Link>
+          </Col>
+          )}
         </Row>
-      </Grid>;
+      </Grid> : <div> Loading... </div>
+    );
   }
 }
 
